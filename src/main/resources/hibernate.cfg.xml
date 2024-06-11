@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <!-- For without Hikari -->
+<!--        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>-->
+<!--        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dev</property>-->
+<!--        <property name="hibernate.connection.username">root</property>-->
+<!--        <property name="hibernate.connection.password">root</property>-->
+
+
+        <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+        <property name="hibernate.hikari.dataSourceClassName">com.mysql.cj.jdbc.MysqlDataSource</property>
+        <property name="hibernate.hikari.dataSource.url">jdbc:mysql://localhost:3306/dev</property>
+        <property name="hibernate.hikari.dataSource.user">root</property>
+        <property name="hibernate.hikari.dataSource.password">root</property>
+
+        <property name="hibernate.hikari.maximumPoolSize">5</property>
+        <property name="hibernate.hikari.minimumIdle">1</property>
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
+        <property name="hibernate.hikari.idleTimeout">600000</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Names of annotated entity classes -->
+        <mapping class="com.timmermans.persistence.DbOutboundEmail"/>
+    </session-factory>
+</hibernate-configuration>
