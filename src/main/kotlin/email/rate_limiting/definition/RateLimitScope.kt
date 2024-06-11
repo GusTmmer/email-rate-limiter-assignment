@@ -1,6 +1,9 @@
 package com.timmermans.email.rate_limiting.definition
 
 import com.timmermans.email.EmailTopic
+import com.timmermans.email.rate_limiting.definition.rate_limiters.ProhibitedRateLimiter
+import com.timmermans.email.rate_limiting.definition.rate_limiters.RegularRateLimiter
+import com.timmermans.email.rate_limiting.definition.rate_limiters.UnlimitedRateLimiter
 import kotlin.time.Duration
 
 fun rateLimited(init: RateLimitScope.() -> Unit): RateLimitScope {
@@ -77,7 +80,16 @@ class RateLimitScope : RateLimiterProvider {
     }
 
     override fun forTopic(topic: EmailTopic): RateLimiter {
-        TODO()
+        return cachedRateLimiters.getOrPut(topic) {
+            when (topic) {
+                in prohibitedTopics -> ProhibitedRateLimiter()
+                in unlimitedTopics -> UnlimitedRateLimiter()
+                else -> RegularRateLimiter(
+                    isolatedRules = isolatedRulesByTopic[topic] ?: setOf(),
+                    sharedRules = sharedRulesByTopic[topic] ?: setOf(),
+                )
+            }
+        }
     }
 
     fun validate() {
