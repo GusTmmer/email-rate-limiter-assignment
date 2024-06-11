@@ -43,8 +43,4 @@ class MutableClock(
     fun set(newInstant: Instant) {
         instant = newInstant
     }
-
-    fun reset() {
-        instant = Instant.parse("2024-01-01T00:00:00Z")
-    }
 }

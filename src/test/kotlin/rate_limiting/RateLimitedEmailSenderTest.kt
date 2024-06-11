@@ -24,7 +24,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
-@ExtendWith(*[TestInjectionExtension::class, TransactionalExtension::class])
+@ExtendWith(TestInjectionExtension::class, TransactionalExtension::class)
 class RateLimitedEmailSenderTest : KoinTest {
 
     private val testClock: MutableClock by inject()
@@ -249,25 +249,4 @@ class RateLimitedEmailSenderTest : KoinTest {
     private fun allTopicsExcept(vararg topicToExclude: EmailTopic): Array<EmailTopic> {
         return (EmailTopic.entries.toSet() - topicToExclude.toSet()).toTypedArray()
     }
-}
-
-private fun getRateLimitDefinition() = rateLimited {
-    prohibited(EmailTopic.UNDEFINED)
-
-    unlimited(EmailTopic.SECURITY)
-
-    limit(EmailTopic.NEWS) {
-        withRules(
-            1 every 2.days,
-            3 every 7.days,
-        )
-    }
-
-    sharedLimit(EmailTopic.NEWS, EmailTopic.MARKETING, EmailTopic.STATUS) {
-        withRules(
-            1 every 1.days,
-            1 every 3.hours,
-        )
-    }
-
 }

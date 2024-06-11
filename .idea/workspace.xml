@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Add EmailSender abstraction&#10;&#10;- EmailGateway.kt to forward emails.&#10;- RateLimitedEmailSender.kt to decorate EmailSender instances">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/InjectionModuleConfiguration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/OutboundEmailsRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/MutableClock.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/TestInjectionExtension.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/TransactionalExtension.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/TransactorForTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/definition/RateLimitScopeTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" afterDir="false" />
+    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/MutableClock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/MutableClock.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +369,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718135746038</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add test versions of dependencies for granular control and DI config&#10;&#10;- Clock -&gt; MutableClock&#10;- Transactor -&gt; TransactorForTest&#10;- JUnit5 test extensions">
+      <option name="closed" value="true" />
+      <created>1718135998523</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718135998523</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits">
+      <option name="closed" value="true" />
+      <created>1718136327705</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718136327705</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -403,6 +408,8 @@
     <MESSAGE value="Add 'Create OutboundEmail table' migration" />
     <MESSAGE value="Add rateLimiter DSL builder" />
     <MESSAGE value="Add EmailSender abstraction&#10;&#10;- EmailGateway.kt to forward emails.&#10;- RateLimitedEmailSender.kt to decorate EmailSender instances" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add EmailSender abstraction&#10;&#10;- EmailGateway.kt to forward emails.&#10;- RateLimitedEmailSender.kt to decorate EmailSender instances" />
+    <MESSAGE value="Add test versions of dependencies for granular control and DI config&#10;&#10;- Clock -&gt; MutableClock&#10;- Transactor -&gt; TransactorForTest&#10;- JUnit5 test extensions" />
+    <MESSAGE value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
   </component>
 </project>

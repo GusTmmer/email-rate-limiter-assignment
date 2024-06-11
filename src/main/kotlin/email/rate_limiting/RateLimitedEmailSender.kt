@@ -14,6 +14,9 @@ class RateLimitedEmailSender(
     private val rateLimiterProvider: RateLimiterProvider,
 ) : EmailSender {
 
+    /**
+     * @throws RateLimitedException when message topic is rate limited.
+     */
     override fun send(emailRequest: SendEmailRequest) {
         if (shouldRateLimit(emailRequest)) {
             val error = "Skipping ${emailRequest.topic} email due to rate limit"
