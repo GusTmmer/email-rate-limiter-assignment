@@ -1,4 +1,4 @@
-package com.timmermans.email.rate_limiting.definition.rate_limiters
+package com.timmermans.email.rate_limiting.definition.rate_limiter
 
 import com.timmermans.SendEmailRequest
 import com.timmermans.email.rate_limiting.definition.RateLimiter

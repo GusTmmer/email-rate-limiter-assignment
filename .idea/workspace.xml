@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits">
+    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Clean up unused methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/MutableClock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/MutableClock.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,62 +94,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dependencies.executor": "Run",
-    "Docker.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.Build EmailRateLimiter.executor": "Run",
-    "Gradle.EmailRateLimiter [:MainKt.main()].executor": "Run",
-    "Gradle.EmailRateLimiter [build].executor": "Run",
-    "Gradle.EmailRateLimiter [checkDatabaseConnection].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayBaseline].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayClean].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayInfo].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayMigrateLocal].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayMigrate].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayRepair].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayUndo].executor": "Run",
-    "Gradle.EmailRateLimiter [flywayValidate].executor": "Run",
-    "Gradle.EmailRateLimiter [jar].executor": "Run",
-    "Gradle.EmailRateLimiter [printClasspath].executor": "Run",
-    "Gradle.Load Gradle Dependencies.executor": "Run",
-    "Gradle.RateLimitScopeTest.all topics must have a rate limiting rule defined for them.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.interaction between limit and sharedLimit rules.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.name.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.prohibitedTopics.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.rate limiting rules affect users independently.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.rate limiting rules are independent when using 'limit' definition.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.sharedRules.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.topicWithMultipleRules.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.topicWithSingleRule.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.unlimitedTopics.executor": "Run",
-    "Gradle.RateLimitedEmailSenderTest.usersAreIndependent.executor": "Run",
-    "Gradle.RateLimitedScopeTest.all topics must have a rate limiting rule defined for them.executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/Users/timmermans/IdeaProjects/EmailRateLimiter/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "settings.editor.splitter.proportion": "0.24464832"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dependencies.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.Build EmailRateLimiter.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [:MainKt.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [checkDatabaseConnection].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayBaseline].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayClean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayInfo].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayMigrateLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayMigrate].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayRepair].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayUndo].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [flywayValidate].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EmailRateLimiter [printClasspath].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitScopeTest.all topics must have a rate limiting rule defined for them.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.interaction between limit and sharedLimit rules.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.name.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.prohibitedTopics.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.rate limiting rules affect users independently.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.rate limiting rules are independent when using 'limit' definition.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.sharedRules.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.topicWithMultipleRules.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.topicWithSingleRule.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.unlimitedTopics.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedEmailSenderTest.usersAreIndependent.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RateLimitedScopeTest.all topics must have a rate limiting rule defined for them.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/timmermans/IdeaProjects/EmailRateLimiter/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.24464832&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/Users/timmermans/.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/Users/timmermans/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition" />
@@ -385,7 +386,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718136327705</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Clean up unused methods">
+      <option name="closed" value="true" />
+      <created>1718146681227</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718146681227</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -410,6 +419,7 @@
     <MESSAGE value="Add EmailSender abstraction&#10;&#10;- EmailGateway.kt to forward emails.&#10;- RateLimitedEmailSender.kt to decorate EmailSender instances" />
     <MESSAGE value="Add test versions of dependencies for granular control and DI config&#10;&#10;- Clock -&gt; MutableClock&#10;- Transactor -&gt; TransactorForTest&#10;- JUnit5 test extensions" />
     <MESSAGE value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
+    <MESSAGE value="Clean up unused methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up unused methods" />
   </component>
 </project>

@@ -1,9 +1,9 @@
 package com.timmermans.email.rate_limiting.definition
 
 import com.timmermans.email.EmailTopic
-import com.timmermans.email.rate_limiting.definition.rate_limiters.ProhibitedRateLimiter
-import com.timmermans.email.rate_limiting.definition.rate_limiters.RegularRateLimiter
-import com.timmermans.email.rate_limiting.definition.rate_limiters.UnlimitedRateLimiter
+import com.timmermans.email.rate_limiting.definition.rate_limiter.ProhibitedRateLimiter
+import com.timmermans.email.rate_limiting.definition.rate_limiter.RegularRateLimiter
+import com.timmermans.email.rate_limiting.definition.rate_limiter.UnlimitedRateLimiter
 import kotlin.time.Duration
 
 fun rateLimited(init: RateLimitScope.() -> Unit): RateLimitScope {
