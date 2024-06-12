@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Clean up unused methods">
+    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Clean up package names">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimitScope.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +80,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -394,7 +391,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718146681227</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Clean up package names">
+      <option name="closed" value="true" />
+      <created>1718147790849</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718147790849</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -420,6 +425,7 @@
     <MESSAGE value="Add test versions of dependencies for granular control and DI config&#10;&#10;- Clock -&gt; MutableClock&#10;- Transactor -&gt; TransactorForTest&#10;- JUnit5 test extensions" />
     <MESSAGE value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
     <MESSAGE value="Clean up unused methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up unused methods" />
+    <MESSAGE value="Clean up package names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up package names" />
   </component>
 </project>
