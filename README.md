@@ -1,13 +1,11 @@
 # Email Rate-Limiter Assignment
 
----
-
 > #### *"Project requested for a hiring process."*
 
 ## Summary
 
 This project uses many of the technologies that would be expected in an
-actual production scenario to show, such as:
+actual production scenario, such as:
 
 - Logging library (Logback)
 - DB migration manager (Flyway)

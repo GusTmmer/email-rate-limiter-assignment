@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Clean up package names">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Add full project description to README.md">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +74,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
@@ -399,7 +399,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718147790849</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add full project description to README.md">
+      <option name="closed" value="true" />
+      <created>1718152219616</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718152219616</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add full project description to README.md">
+      <option name="closed" value="true" />
+      <created>1718152261547</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718152261547</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -426,6 +442,7 @@
     <MESSAGE value="Add RateLimiter implementation&#10;&#10;- Regular - analyses history&#10;- Prohibited - always limits&#10;- Unlimited - never limits" />
     <MESSAGE value="Clean up unused methods" />
     <MESSAGE value="Clean up package names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up package names" />
+    <MESSAGE value="Add full project description to README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add full project description to README.md" />
   </component>
 </project>
