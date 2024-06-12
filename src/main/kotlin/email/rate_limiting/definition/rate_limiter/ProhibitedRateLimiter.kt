@@ -1,6 +1,6 @@
 package com.timmermans.email.rate_limiting.definition.rate_limiter
 
-import com.timmermans.SendEmailRequest
+import com.timmermans.email.SendEmailRequest
 import com.timmermans.email.rate_limiting.definition.RateLimiter
 import org.slf4j.LoggerFactory
 

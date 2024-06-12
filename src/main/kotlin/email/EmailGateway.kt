@@ -1,6 +1,5 @@
 package com.timmermans.email
 
-import com.timmermans.SendEmailRequest
 import com.timmermans.persistence.DbOutboundEmail
 import com.timmermans.persistence.Transactor
 import org.hibernate.Session

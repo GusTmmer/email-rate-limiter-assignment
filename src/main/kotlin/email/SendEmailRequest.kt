@@ -1,6 +1,4 @@
-package com.timmermans
-
-import com.timmermans.email.EmailTopic
+package com.timmermans.email
 
 data class SendEmailRequest(
     val toUserId: Long,

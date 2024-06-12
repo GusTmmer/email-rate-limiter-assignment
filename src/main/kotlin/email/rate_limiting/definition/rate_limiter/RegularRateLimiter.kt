@@ -1,7 +1,7 @@
 package com.timmermans.email.rate_limiting.definition.rate_limiter
 
-import com.timmermans.SendEmailRequest
 import com.timmermans.email.EmailTopic
+import com.timmermans.email.SendEmailRequest
 import com.timmermans.email.rate_limiting.definition.RateLimitRule
 import com.timmermans.email.rate_limiting.definition.RateLimiter
 import com.timmermans.email.rate_limiting.definition.SharedLimitRule
@@ -39,10 +39,10 @@ class RegularRateLimiter(
 
         val emailCountByTopicInTimeWindow = countEmailsByTopicArrangedByTimeWindow(outboundEmails, now)
 
-        return applyRules(emailRequest.topic, emailCountByTopicInTimeWindow)
+        return hasMaxEmailsInTimeWindow(emailRequest.topic, emailCountByTopicInTimeWindow)
     }
 
-    private fun applyRules(
+    private fun hasMaxEmailsInTimeWindow(
         messageTopic: EmailTopic,
         emailCountByTopicInTimeWindow: Map<TimeWindow, EmailCountByTopic>,
     ): Boolean {
