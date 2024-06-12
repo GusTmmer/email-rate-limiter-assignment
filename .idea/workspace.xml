@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Add full project description to README.md">
+    <list default="true" id="feaec151-08bb-4d31-af8d-52f6f0b2d3bb" name="Changes" comment="Clean up tests and file paths">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SendEmailRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/SendEmailRequest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/EmailGateway.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/EmailGateway.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/EmailSender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/EmailSender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/RateLimitedEmailSender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/RateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/ProhibitedRateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/RegularRateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/email/rate_limiting/definition/rate_limiter/UnlimitedRateLimiter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/rate_limiting/RateLimitedEmailSenderTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +27,23 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="EmailRateLimiter" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="EmailRateLimiter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="EmailRateLimiter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -412,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718152386363</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Clean up tests and file paths">
+      <option name="closed" value="true" />
+      <created>1718207154853</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718207154853</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -440,6 +457,7 @@
     <MESSAGE value="Clean up unused methods" />
     <MESSAGE value="Clean up package names" />
     <MESSAGE value="Add full project description to README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add full project description to README.md" />
+    <MESSAGE value="Clean up tests and file paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up tests and file paths" />
   </component>
 </project>

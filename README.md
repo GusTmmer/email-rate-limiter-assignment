@@ -36,3 +36,13 @@ The guiding principle used here was to minimize DB queries, which resulted in re
 - Count the number of emails of each topic in each of these windows\
   resulting in a structure like `[timeWindow][topic] -> count`;
 - Validate the rules.
+
+## How to run
+
+- Build the project with Gradle: `./gradlew build`
+- Boot up the MySQL container with the 'Dependencies' Run Configuration in IntelliJ\
+  or regularly start the container with `docker-compose up -d` in the `dependencies/` folder.
+- Apply the DB migration with `./gradlew flywayMigrate`
+- As this project is an isolated RateLimiter, no real email intents are available.\
+  Therefore, the only behavior available is through prepared tests.\
+  To run them, use `./gradlew test`
