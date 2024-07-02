@@ -10,8 +10,8 @@ import com.timmermans.email.rate_limiting.definition.rate_limiter.RegularRateLim
 import com.timmermans.email.rate_limiting.definition.rate_limiter.UnlimitedRateLimiter
 import kotlin.time.Duration
 
-fun rateLimited(init: RateLimitScope.() -> Unit): RateLimitScope {
-    return RateLimitScope().apply(init).also { it.validate() }
+fun rateLimited(init: RateLimitProviderBuilder.() -> Unit): RateLimiterProvider {
+    return RateLimitProviderBuilder().apply(init).also { it.validate() }
 }
 
 
@@ -19,7 +19,7 @@ fun rateLimited(init: RateLimitScope.() -> Unit): RateLimitScope {
 annotation class RateLimitingDefinition
 
 @RateLimitingDefinition
-class RateLimitScope : RateLimiterProvider {
+class RateLimitProviderBuilder : RateLimiterProvider {
     private val prohibitedTopics = mutableSetOf<EmailTopic>()
     private val unlimitedTopics = mutableSetOf<EmailTopic>()
 
