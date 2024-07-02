@@ -74,26 +74,18 @@ class RegularRateLimiter(
         now: Instant
     ): Map<TimeWindow, EmailCountByTopic> {
         val outboundEmailsByTimeWindow = mutableMapOf<Duration, List<OutboundEmail>>()
-        val outboundEmailsSlice = mutableListOf<OutboundEmail>()
 
-        val outboundEmailsIterator = outboundEmails.iterator()
-        var iterationEmail: OutboundEmail? = null
+        val allEmailsInTimeWindow = mutableListOf<OutboundEmail>()
+        var outboundEmailsLeftToAnalyze = outboundEmails
 
-        for ((timeWindow, instantCutoff) in getAllRuleTimeWindowsInAscOrder().map { it to now - it.toJavaDuration() }) {
-            while (iterationEmail != null || outboundEmailsIterator.hasNext()) {
-                if (iterationEmail == null) {
-                    iterationEmail = outboundEmailsIterator.next()
-                }
+        for ((timeWindow, cutoffTime) in getAllRuleTimeWindowsInAscOrder().map { it to (now - it.toJavaDuration()) }) {
+            val (emailsInTimeWindow, emailsOutOfTimeWindow) = outboundEmailsLeftToAnalyze
+                .partition { it.sentAt >= cutoffTime }
 
-                if (iterationEmail.sentAt >= instantCutoff) {
-                    outboundEmailsSlice.add(iterationEmail)
-                    iterationEmail = null
-                } else {
-                    break
-                }
-            }
+            allEmailsInTimeWindow.addAll(emailsInTimeWindow)
+            outboundEmailsByTimeWindow[timeWindow] = allEmailsInTimeWindow.toList()
 
-            outboundEmailsByTimeWindow[timeWindow] = outboundEmailsSlice.toList()
+            outboundEmailsLeftToAnalyze = emailsOutOfTimeWindow
         }
 
         return outboundEmailsByTimeWindow.mapValues { (_, emails) ->
