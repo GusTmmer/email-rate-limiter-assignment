@@ -1,7 +1,8 @@
 plugins {
     kotlin("jvm") version "2.0.0"
-    id("org.flywaydb.flyway") version "10.14.0"
+    kotlin("plugin.serialization") version "2.0.0"
 
+    id("org.flywaydb.flyway") version "10.14.0"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.24"
 }
 
@@ -24,16 +25,16 @@ buildscript {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
     implementation("io.insert-koin:koin-core:$koinVersion")
 
     implementation("org.hibernate:hibernate-core:5.6.15.Final")
     implementation("org.hibernate:hibernate-hikaricp:5.6.15.Final")
-
     // Required by Hibernate
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 
     implementation("ch.qos.logback:logback-classic:1.5.6")
-
 
     // Required for flyway
     implementation("mysql:mysql-connector-java:8.0.28")

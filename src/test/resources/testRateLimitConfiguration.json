@@ -1,0 +1,62 @@
+[
+  {
+    "type": "REGULAR",
+    "topics": [
+      "NEWS"
+    ],
+    "rules": [
+      {
+        "limit": 1,
+        "timeWindow": {
+          "size": 1,
+          "timeUnit": "DAYS"
+        }
+      },
+      {
+        "limit": 2,
+        "timeWindow": {
+          "size": 7,
+          "timeUnit": "DAYS"
+        }
+      }
+    ]
+  },
+  {
+    "type": "REGULAR",
+    "topics": [
+      "MARKETING"
+    ],
+    "rules": [
+      {
+        "limit": 1,
+        "timeWindow": {
+          "size": 1,
+          "timeUnit": "DAYS"
+        }
+      },
+      {
+        "limit": 3,
+        "timeWindow": {
+          "size": 7,
+          "timeUnit": "DAYS"
+        }
+      }
+    ]
+  },
+  {
+    "type": "SHARED",
+    "topics": [
+      "NEWS",
+      "MARKETING"
+    ],
+    "rules": [
+      {
+        "limit": 2,
+        "timeWindow": {
+          "size": 2,
+          "timeUnit": "DAYS"
+        }
+      }
+    ]
+  }
+]

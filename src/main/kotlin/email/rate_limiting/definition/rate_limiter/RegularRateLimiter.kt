@@ -2,9 +2,9 @@ package com.timmermans.email.rate_limiting.definition.rate_limiter
 
 import com.timmermans.email.EmailTopic
 import com.timmermans.email.SendEmailRequest
-import com.timmermans.email.rate_limiting.definition.RateLimitRule
 import com.timmermans.email.rate_limiting.definition.RateLimiter
-import com.timmermans.email.rate_limiting.definition.SharedLimitRule
+import com.timmermans.email.rate_limiting.definition.configuration.RateLimitRule
+import com.timmermans.email.rate_limiting.definition.configuration.SharedLimitRule
 import com.timmermans.persistence.OutboundEmail
 import com.timmermans.persistence.OutboundEmailsRepository
 import com.timmermans.persistence.Transactor

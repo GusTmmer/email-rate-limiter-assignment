@@ -1,18 +1,16 @@
 package rate_limiting
 
 import MutableClock
+import RateLimitTestHelper.allTopicsExcept
+import RateLimitTestHelper.assertNotRateLimited
+import RateLimitTestHelper.assertRateLimited
 import TestInjectionExtension
 import TransactionalExtension
-import com.timmermans.email.EmailSender
 import com.timmermans.email.EmailTopic
-import com.timmermans.email.SendEmailRequest
 import com.timmermans.email.rate_limiting.RateLimitedEmailSender
-import com.timmermans.email.rate_limiting.RateLimitedException
-import com.timmermans.email.rate_limiting.definition.every
-import com.timmermans.email.rate_limiting.definition.rateLimited
+import com.timmermans.email.rate_limiting.definition.configuration.dsl.every
+import com.timmermans.email.rate_limiting.definition.configuration.dsl.rateLimited
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EnumSource
@@ -25,7 +23,7 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
 @ExtendWith(TestInjectionExtension::class, TransactionalExtension::class)
-class RateLimitedEmailSenderTest : KoinTest {
+class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     private val testClock: MutableClock by inject()
 
@@ -271,21 +269,5 @@ class RateLimitedEmailSenderTest : KoinTest {
         testClock.set(Instant.parse("2024-01-08T00:00:02Z")) // Day 8
         assertNotRateLimited(userId, EmailTopic.NEWS, emailSender)
         assertNotRateLimited(userId, EmailTopic.MARKETING, emailSender)
-    }
-
-    private fun assertNotRateLimited(userId: Long, topic: EmailTopic, emailSender: RateLimitedEmailSender) {
-        assertDoesNotThrow { sendMessageToUserWithTopic(userId, topic, emailSender) }
-    }
-
-    private fun assertRateLimited(userId: Long, topic: EmailTopic, emailSender: RateLimitedEmailSender) {
-        assertThrows<RateLimitedException> { sendMessageToUserWithTopic(userId, topic, emailSender) }
-    }
-
-    private fun sendMessageToUserWithTopic(userId: Long, topic: EmailTopic, emailSender: EmailSender) {
-        emailSender.send(SendEmailRequest(toUserId = userId, topic = topic, contents = ""))
-    }
-
-    private fun allTopicsExcept(vararg topicToExclude: EmailTopic): Array<EmailTopic> {
-        return (EmailTopic.entries.toSet() - topicToExclude.toSet()).toTypedArray()
     }
 }

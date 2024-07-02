@@ -1,0 +1,60 @@
+[
+  {
+    "type": "REGULAR",
+    "topics": [
+      "NEWS"
+    ],
+    "rules": [
+      {
+        "limit": 1,
+        "timeWindow": {
+          "size": 2,
+          "timeUnit": "DAYS"
+        }
+      },
+      {
+        "limit": 3,
+        "timeWindow": {
+          "size": 7,
+          "timeUnit": "DAYS"
+        }
+      }
+    ]
+  },
+  {
+    "type": "SHARED",
+    "topics": [
+      "NEWS",
+      "MARKETING",
+      "STATUS"
+    ],
+    "rules": [
+      {
+        "limit": 1,
+        "timeWindow": {
+          "size": 1,
+          "timeUnit": "DAYS"
+        }
+      },
+      {
+        "limit": 1,
+        "timeWindow": {
+          "size": 3,
+          "timeUnit": "DAYS"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UNLIMITED",
+    "topics": [
+      "SECURITY"
+    ]
+  },
+  {
+    "type": "PROHIBITED",
+    "topics": [
+      "OUTDATED"
+    ]
+  }
+]

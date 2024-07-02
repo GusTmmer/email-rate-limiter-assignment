@@ -1,7 +1,7 @@
 package rate_limiting.definition
 
 import com.timmermans.email.EmailTopic
-import com.timmermans.email.rate_limiting.definition.rateLimited
+import com.timmermans.email.rate_limiting.definition.configuration.dsl.rateLimited
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

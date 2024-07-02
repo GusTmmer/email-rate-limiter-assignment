@@ -1,6 +1,10 @@
-package com.timmermans.email.rate_limiting.definition
+package com.timmermans.email.rate_limiting.definition.configuration.dsl
 
 import com.timmermans.email.EmailTopic
+import com.timmermans.email.rate_limiting.definition.RateLimiter
+import com.timmermans.email.rate_limiting.definition.RateLimiterProvider
+import com.timmermans.email.rate_limiting.definition.configuration.RateLimitRule
+import com.timmermans.email.rate_limiting.definition.configuration.SharedLimitRule
 import com.timmermans.email.rate_limiting.definition.rate_limiter.ProhibitedRateLimiter
 import com.timmermans.email.rate_limiting.definition.rate_limiter.RegularRateLimiter
 import com.timmermans.email.rate_limiting.definition.rate_limiter.UnlimitedRateLimiter
@@ -10,15 +14,6 @@ fun rateLimited(init: RateLimitScope.() -> Unit): RateLimitScope {
     return RateLimitScope().apply(init).also { it.validate() }
 }
 
-data class SharedLimitRule(
-    val groupTopics: Set<EmailTopic>,
-    val rules: Set<RateLimitRule>,
-)
-
-data class RateLimitRule(
-    val timeWindow: Duration,
-    val limit: Int,
-)
 
 @DslMarker
 annotation class RateLimitingDefinition
@@ -26,10 +21,9 @@ annotation class RateLimitingDefinition
 @RateLimitingDefinition
 class RateLimitScope : RateLimiterProvider {
     private val prohibitedTopics = mutableSetOf<EmailTopic>()
-
     private val unlimitedTopics = mutableSetOf<EmailTopic>()
-    private val isolatedRulesByTopic = mutableMapOf<EmailTopic, MutableSet<RateLimitRule>>()
 
+    private val isolatedRulesByTopic = mutableMapOf<EmailTopic, MutableSet<RateLimitRule>>()
     private val sharedRulesByTopic = mutableMapOf<EmailTopic, MutableSet<SharedLimitRule>>()
 
     private val cachedRateLimiters = mutableMapOf<EmailTopic, RateLimiter>()
@@ -118,4 +112,4 @@ class RulesScope {
 
 }
 
-infix fun Int.every(period: Duration) = RateLimitRule(period, this)
+infix fun Int.every(period: Duration) = RateLimitRule(this, period)
