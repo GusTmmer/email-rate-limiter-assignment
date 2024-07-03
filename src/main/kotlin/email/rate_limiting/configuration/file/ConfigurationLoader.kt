@@ -1,5 +1,6 @@
-package com.timmermans.email.rate_limiting.definition.configuration.file
+package com.timmermans.email.rate_limiting.configuration.file
 
+import com.timmermans.email.rate_limiting.configuration.RateLimitingConfig
 import kotlinx.serialization.json.Json
 import java.io.File
 

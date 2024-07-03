@@ -1,4 +1,4 @@
-package com.timmermans.email.rate_limiting.definition.configuration
+package com.timmermans.email.rate_limiting.configuration
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable

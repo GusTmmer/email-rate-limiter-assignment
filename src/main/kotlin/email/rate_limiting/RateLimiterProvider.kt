@@ -1,4 +1,4 @@
-package com.timmermans.email.rate_limiting.definition
+package com.timmermans.email.rate_limiting
 
 import com.timmermans.email.EmailTopic
 

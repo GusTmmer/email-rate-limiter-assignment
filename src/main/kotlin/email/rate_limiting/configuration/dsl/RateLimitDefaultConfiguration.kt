@@ -1,12 +1,12 @@
-package com.timmermans.email.rate_limiting.definition.configuration.dsl
+package com.timmermans.email.rate_limiting.configuration.dsl
 
 import com.timmermans.email.EmailTopic
-import com.timmermans.email.rate_limiting.definition.RateLimiterProvider
+import com.timmermans.email.rate_limiting.RateLimiterProvider
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
 
-val rateLimiterProvider: RateLimiterProvider = rateLimited {
+val rateLimiterProvider: RateLimiterProvider = buildRateLimiter {
     prohibited(EmailTopic.UNDEFINED, EmailTopic.OUTDATED)
 
     limit(EmailTopic.NEWS) {

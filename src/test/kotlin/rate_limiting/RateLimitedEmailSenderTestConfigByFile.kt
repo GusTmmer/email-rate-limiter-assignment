@@ -7,8 +7,8 @@ import TestInjectionExtension
 import TransactionalExtension
 import com.timmermans.email.EmailTopic
 import com.timmermans.email.rate_limiting.RateLimitedEmailSender
-import com.timmermans.email.rate_limiting.definition.configuration.file.RateLimiterProvider
-import com.timmermans.email.rate_limiting.definition.configuration.file.loadRateLimitConfig
+import com.timmermans.email.rate_limiting.configuration.RateLimiterProviderFromConfig
+import com.timmermans.email.rate_limiting.configuration.file.loadRateLimitConfig
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.core.parameter.parametersOf
@@ -23,7 +23,9 @@ class RateLimitedEmailSenderTestConfigByFile : KoinTest {
 
     @Test
     fun `test configuration using file`() {
-        val provider = RateLimiterProvider(loadRateLimitConfig("src/test/resources/testRateLimitConfiguration.json"))
+        val provider = RateLimiterProviderFromConfig(
+            loadRateLimitConfig("src/test/resources/testRateLimitConfiguration.json")
+        )
         val emailSender: RateLimitedEmailSender by inject { parametersOf(provider) }
 
         val userId = 1L

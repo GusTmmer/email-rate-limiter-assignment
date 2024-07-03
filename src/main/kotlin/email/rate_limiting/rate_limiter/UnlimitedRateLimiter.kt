@@ -1,7 +1,7 @@
-package com.timmermans.email.rate_limiting.definition.rate_limiter
+package com.timmermans.email.rate_limiting.rate_limiter
 
 import com.timmermans.email.SendEmailRequest
-import com.timmermans.email.rate_limiting.definition.RateLimiter
+import com.timmermans.email.rate_limiting.RateLimiter
 import org.slf4j.LoggerFactory
 
 private val logger = LoggerFactory.getLogger(UnlimitedRateLimiter::class.simpleName)

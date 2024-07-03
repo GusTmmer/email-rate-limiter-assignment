@@ -3,8 +3,8 @@ package com.timmermans
 import com.timmermans.email.EmailGateway
 import com.timmermans.email.EmailSender
 import com.timmermans.email.rate_limiting.RateLimitedEmailSender
-import com.timmermans.email.rate_limiting.definition.RateLimiterProvider
-import com.timmermans.email.rate_limiting.definition.configuration.dsl.rateLimiterProvider
+import com.timmermans.email.rate_limiting.RateLimiterProvider
+import com.timmermans.email.rate_limiting.configuration.dsl.rateLimiterProvider
 import com.timmermans.persistence.OutboundEmailsRepository
 import com.timmermans.persistence.Transactor
 import org.koin.dsl.module

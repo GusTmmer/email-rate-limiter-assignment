@@ -18,8 +18,4 @@ object RateLimitTestHelper {
     private fun sendMessageToUserWithTopic(userId: Long, topic: EmailTopic, emailSender: EmailSender) {
         emailSender.send(SendEmailRequest(toUserId = userId, topic = topic, contents = ""))
     }
-
-    fun allTopicsExcept(vararg topicToExclude: EmailTopic): Array<EmailTopic> {
-        return (EmailTopic.entries.toSet() - topicToExclude.toSet()).toTypedArray()
-    }
 }

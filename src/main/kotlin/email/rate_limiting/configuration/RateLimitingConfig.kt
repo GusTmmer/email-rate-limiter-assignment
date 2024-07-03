@@ -1,7 +1,6 @@
-package com.timmermans.email.rate_limiting.definition.configuration.file
+package com.timmermans.email.rate_limiting.configuration
 
 import com.timmermans.email.EmailTopic
-import com.timmermans.email.rate_limiting.definition.configuration.RateLimitRule
 import kotlinx.serialization.Serializable
 
 

@@ -2,7 +2,6 @@ package com.timmermans.email.rate_limiting
 
 import com.timmermans.email.EmailSender
 import com.timmermans.email.SendEmailRequest
-import com.timmermans.email.rate_limiting.definition.RateLimiterProvider
 import org.slf4j.LoggerFactory
 
 private val logger = LoggerFactory.getLogger(RateLimitedEmailSender::class.simpleName)

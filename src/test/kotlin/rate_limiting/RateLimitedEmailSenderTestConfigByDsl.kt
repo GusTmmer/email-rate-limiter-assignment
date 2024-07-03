@@ -1,15 +1,14 @@
 package rate_limiting
 
 import MutableClock
-import RateLimitTestHelper.allTopicsExcept
 import RateLimitTestHelper.assertNotRateLimited
 import RateLimitTestHelper.assertRateLimited
 import TestInjectionExtension
 import TransactionalExtension
 import com.timmermans.email.EmailTopic
 import com.timmermans.email.rate_limiting.RateLimitedEmailSender
-import com.timmermans.email.rate_limiting.definition.configuration.dsl.every
-import com.timmermans.email.rate_limiting.definition.configuration.dsl.rateLimited
+import com.timmermans.email.rate_limiting.configuration.dsl.buildRateLimiter
+import com.timmermans.email.rate_limiting.configuration.dsl.every
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
@@ -29,8 +28,11 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @ParameterizedTest
     @EnumSource(EmailTopic::class)
-    fun `topics configured with prohibited`(emailTopic: EmailTopic) {
-        val allProhibitedRateLimiterDef = rateLimited { prohibited(*EmailTopic.entries.toTypedArray()) }
+    fun `topics configured with prohibited take precedence`(emailTopic: EmailTopic) {
+        val allProhibitedRateLimiterDef = buildRateLimiter {
+            prohibited(emailTopic)
+            unlimited(*EmailTopic.entries.toTypedArray())
+        }
         val emailSender: RateLimitedEmailSender by inject { parametersOf(allProhibitedRateLimiterDef) }
 
         assertRateLimited(1, emailTopic, emailSender)
@@ -39,7 +41,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
     @ParameterizedTest
     @EnumSource(EmailTopic::class)
     fun `topics configured with unlimited`(emailTopic: EmailTopic) {
-        val unlimitedRateLimiterDef = rateLimited { unlimited(*EmailTopic.entries.toTypedArray()) }
+        val unlimitedRateLimiterDef = buildRateLimiter { unlimited(*EmailTopic.entries.toTypedArray()) }
         val emailSender: RateLimitedEmailSender by inject { parametersOf(unlimitedRateLimiterDef) }
 
         repeat(5) {
@@ -49,8 +51,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `topic with single regular rule`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.STATUS))
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.STATUS) {
                 withRules(
                     1 every 1.hours
@@ -71,8 +72,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `topic with multiple regular rules`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.STATUS))
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.STATUS) {
                 withRules(
                     1 every 1.hours,
@@ -103,8 +103,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `rate limiting rules affect users independently`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.NEWS))
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.NEWS) {
                 withRules(
                     1 every 1.hours
@@ -120,8 +119,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `rate limiting rules are independent when using 'limit' definition`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.NEWS, EmailTopic.MARKETING))
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.NEWS, EmailTopic.MARKETING) {
                 withRules(
                     1 every 1.hours
@@ -141,8 +139,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `shared rules`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.NEWS, EmailTopic.MARKETING))
+        val rateLimiterDefinition = buildRateLimiter {
             sharedLimit(EmailTopic.NEWS, EmailTopic.MARKETING) {
                 withRules(
                     1 every 1.hours
@@ -164,9 +161,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `interaction between limit and sharedLimit rules`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.NEWS, EmailTopic.MARKETING))
-
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.NEWS) {
                 withRules(
                     1 every 1.days,
@@ -198,9 +193,7 @@ class RateLimitedEmailSenderTestConfigByDsl : KoinTest {
 
     @Test
     fun `interaction between multiple limit and sharedLimit rules`() {
-        val rateLimiterDefinition = rateLimited {
-            prohibited(*allTopicsExcept(EmailTopic.NEWS, EmailTopic.MARKETING))
-
+        val rateLimiterDefinition = buildRateLimiter {
             limit(EmailTopic.NEWS) {
                 withRules(
                     1 every 1.days,
