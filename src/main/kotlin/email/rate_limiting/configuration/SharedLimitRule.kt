@@ -1,8 +1,6 @@
 package com.timmermans.email.rate_limiting.configuration
 
-import com.timmermans.email.EmailTopic
-
 data class SharedLimitRule(
-    val groupTopics: Set<EmailTopic>,
+    val groupTopics: Set<String>,
     val rules: Set<RateLimitRule>,
 )

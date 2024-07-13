@@ -4,7 +4,7 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.koin.core.component.inject
 import org.koin.test.KoinTest
 
-class TransactionalExtension() : BeforeEachCallback, AfterEachCallback, KoinTest {
+class TransactionalExtension : BeforeEachCallback, AfterEachCallback, KoinTest {
 
     private val transactor: TransactorForTest by inject()
 

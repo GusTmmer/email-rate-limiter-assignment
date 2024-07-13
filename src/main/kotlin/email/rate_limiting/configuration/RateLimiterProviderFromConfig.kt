@@ -1,6 +1,5 @@
 package com.timmermans.email.rate_limiting.configuration
 
-import com.timmermans.email.EmailTopic
 import com.timmermans.email.rate_limiting.RateLimiter
 import com.timmermans.email.rate_limiting.RateLimiterProvider
 import com.timmermans.email.rate_limiting.rate_limiter.ProhibitedRateLimiter
@@ -10,38 +9,23 @@ import org.slf4j.LoggerFactory
 
 private val logger = LoggerFactory.getLogger(RateLimiterProviderFromConfig::class.simpleName)
 
-class RateLimiterProviderFromConfig(configs: List<RateLimitingConfig>) : RateLimiterProvider {
+class RateLimiterProviderFromConfig(private val configs: List<RateLimitingConfig>) : RateLimiterProvider {
 
-    private val cachedRateLimiters = mutableMapOf<EmailTopic, RateLimiter>()
+    private val cachedRateLimiters = mutableMapOf<String, RateLimiter>()
 
-    private val prohibitedTopics: Set<EmailTopic>
-    private val unlimitedTopics: Set<EmailTopic>
-    private val isolatedRulesByTopic: Map<EmailTopic, Set<RateLimitRule>>
-    private val sharedRulesByTopic: Map<EmailTopic, Set<SharedLimitRule>>
-
-    companion object {
-        private fun validateConfig(configs: List<RateLimitingConfig>): List<RateLimitingConfig> {
-            val configuredTopics = configs.flatMap { it.topics }.distinct().toSet()
-
-            val missingConfiguration = EmailTopic.entries.filter { it !in configuredTopics }
-                .takeIf { it.isNotEmpty() }
-                ?.also { topics -> logger.warn("No configuration for $topics. Setting as PROHIBITED") }
-                ?.let { topics -> RateLimitingConfig(Type.PROHIBITED, topics) }
-
-            return missingConfiguration?.let { configs + it } ?: configs
-        }
-    }
+    private val prohibitedTopics: Set<String>
+    private val unlimitedTopics: Set<String>
+    private val isolatedRulesByTopic: Map<String, Set<RateLimitRule>>
+    private val sharedRulesByTopic: Map<String, Set<SharedLimitRule>>
 
     init {
-        val validatedConfigs = validateConfig(configs)
+        val prohibitedTopics = mutableSetOf<String>()
+        val unlimitedTopics = mutableSetOf<String>()
 
-        val prohibitedTopics = mutableSetOf<EmailTopic>()
-        val unlimitedTopics = mutableSetOf<EmailTopic>()
+        val isolatedRulesByTopic = mutableMapOf<String, MutableSet<RateLimitRule>>()
+        val sharedRulesByTopic = mutableMapOf<String, MutableSet<SharedLimitRule>>()
 
-        val isolatedRulesByTopic = mutableMapOf<EmailTopic, MutableSet<RateLimitRule>>()
-        val sharedRulesByTopic = mutableMapOf<EmailTopic, MutableSet<SharedLimitRule>>()
-
-        for (config in validatedConfigs) {
+        for (config in configs) {
             when (config.type) {
                 Type.PROHIBITED -> {
                     prohibitedTopics.addAll(config.topics)
@@ -67,21 +51,29 @@ class RateLimiterProviderFromConfig(configs: List<RateLimitingConfig>) : RateLim
             }
         }
 
-        this.prohibitedTopics = prohibitedTopics.toSet()
-        this.unlimitedTopics = unlimitedTopics.toSet()
-        this.isolatedRulesByTopic = isolatedRulesByTopic.mapValues { it.value.toSet() }.toMap()
-        this.sharedRulesByTopic = sharedRulesByTopic.mapValues { it.value.toSet() }.toMap()
+        this.prohibitedTopics = prohibitedTopics.map { it.uppercase() }.toSet()
+        this.unlimitedTopics = unlimitedTopics.map { it.uppercase() }.toSet()
+        this.isolatedRulesByTopic = isolatedRulesByTopic.map { it.key.uppercase() to it.value.toSet() }.toMap()
+        this.sharedRulesByTopic = sharedRulesByTopic.map { it.key.uppercase() to it.value.toSet() }.toMap()
     }
 
-    override fun forTopic(topic: EmailTopic): RateLimiter {
-        return cachedRateLimiters.getOrPut(topic) {
-            when (topic) {
+    fun getSourceConfigs() = configs
+
+    override fun forTopic(topic: String): RateLimiter {
+        val topicUppercase = topic.uppercase()
+        return cachedRateLimiters.getOrPut(topicUppercase) {
+            when (topicUppercase) {
                 in prohibitedTopics -> ProhibitedRateLimiter()
                 in unlimitedTopics -> UnlimitedRateLimiter()
-                else -> RegularRateLimiter(
-                    isolatedRules = isolatedRulesByTopic[topic] ?: setOf(),
-                    sharedRules = sharedRulesByTopic[topic] ?: setOf(),
+                in isolatedRulesByTopic, in sharedRulesByTopic -> RegularRateLimiter(
+                    isolatedRules = isolatedRulesByTopic[topicUppercase] ?: emptySet(),
+                    sharedRules = sharedRulesByTopic[topicUppercase] ?: emptySet(),
                 )
+
+                else -> {
+                    logger.error("Topic $topicUppercase does not have rate-limiting configuration")
+                    ProhibitedRateLimiter()
+                }
             }
         }
     }

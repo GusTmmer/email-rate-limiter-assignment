@@ -1,6 +1,5 @@
 package com.timmermans.email.rate_limiting.rate_limiter
 
-import com.timmermans.email.EmailTopic
 import com.timmermans.email.SendEmailRequest
 import com.timmermans.email.rate_limiting.RateLimiter
 import com.timmermans.email.rate_limiting.configuration.RateLimitRule
@@ -21,7 +20,7 @@ import kotlin.time.toJavaDuration
 private val logger = LoggerFactory.getLogger(RegularRateLimiter::class.simpleName)
 
 typealias TimeWindow = Duration
-typealias EmailCountByTopic = Map<EmailTopic, Int>
+typealias EmailCountByTopic = Map<String, Int>
 
 class RegularRateLimiter(
     private val isolatedRules: Set<RateLimitRule>,
@@ -43,7 +42,7 @@ class RegularRateLimiter(
     }
 
     private fun hasMaxEmailsInTimeWindow(
-        messageTopic: EmailTopic,
+        messageTopic: String,
         emailCountByTopicInTimeWindow: Map<TimeWindow, EmailCountByTopic>,
     ): Boolean {
         for (rule in isolatedRules) {
@@ -120,7 +119,7 @@ class RegularRateLimiter(
         return maxOf(isolatedRulesMaxTimeWindow, sharedRulesMaxTimeWindow)
     }
 
-    private fun getAllTopicsUsedBySharedRules(): Set<EmailTopic> {
+    private fun getAllTopicsUsedBySharedRules(): Set<String> {
         return sharedRules.map { it.groupTopics }.fold(setOf()) { acc, emailTopics -> acc + emailTopics }
     }
 }

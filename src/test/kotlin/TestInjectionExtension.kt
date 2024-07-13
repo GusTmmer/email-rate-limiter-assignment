@@ -11,7 +11,7 @@ import org.koin.dsl.module
 import org.koin.test.KoinTest
 import java.time.Clock
 
-class TestInjectionExtension() : BeforeEachCallback, AfterEachCallback, KoinTest {
+class TestInjectionExtension : BeforeEachCallback, AfterEachCallback, KoinTest {
 
     override fun beforeEach(p0: ExtensionContext?) {
         startKoin()

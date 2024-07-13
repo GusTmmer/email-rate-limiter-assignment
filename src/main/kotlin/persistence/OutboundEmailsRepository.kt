@@ -1,6 +1,5 @@
 package com.timmermans.persistence
 
-import com.timmermans.email.EmailTopic
 import org.hibernate.Session
 import org.hibernate.criterion.Order
 import org.hibernate.criterion.Restrictions
@@ -11,7 +10,7 @@ class OutboundEmailsRepository {
     fun getOutboundEmailsWithTopicsForUser(
         session: Session,
         userId: Long,
-        topics: Set<EmailTopic>,
+        topics: Set<String>,
         after: Instant,
     ): List<DbOutboundEmail> {
         return session.createCriteria<DbOutboundEmail>()

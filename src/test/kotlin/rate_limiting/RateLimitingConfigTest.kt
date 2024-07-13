@@ -1,18 +1,33 @@
 package rate_limiting
 
-import com.timmermans.email.EmailTopic
+import ErrorLogAppender
+import LogErrorVerifierExtension
 import com.timmermans.email.rate_limiting.configuration.RateLimiterProviderFromConfig
+import com.timmermans.email.rate_limiting.configuration.dsl.buildRateLimiter
 import com.timmermans.email.rate_limiting.rate_limiter.ProhibitedRateLimiter
 import org.junit.jupiter.api.Assertions.assertInstanceOf
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EnumSource
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 class RateLimitingConfigTest {
 
-    @ParameterizedTest
-    @EnumSource(EmailTopic::class)
-    fun `when there is no config for a topic, set it to prohibited`(emailTopic: EmailTopic) {
-        val provider = RateLimiterProviderFromConfig(listOf())
-        assertInstanceOf(ProhibitedRateLimiter::class.java, provider.forTopic(emailTopic))
+    @Test
+    @ExtendWith(LogErrorVerifierExtension::class)
+    fun `when requesting a provider for a topic without config, use 'prohibited' and produce error log`(
+        errorLogAppender: ErrorLogAppender,
+    ) {
+        val provider = RateLimiterProviderFromConfig(emptyList())
+        assertInstanceOf(ProhibitedRateLimiter::class.java, provider.forTopic("TOPIC"))
+        errorLogAppender.assertHasErrorLogs()
+    }
+
+    @Test
+    fun `uses of topic are case insensitive`() {
+        val provider = buildRateLimiter { unlimited("topic") }
+
+        val rateLimiters = listOf("topic", "Topic", "TOPIC").map { provider.forTopic(it) }
+
+        assertTrue(rateLimiters.all { it == rateLimiters.first() })
     }
 }

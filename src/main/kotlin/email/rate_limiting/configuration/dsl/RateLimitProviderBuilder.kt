@@ -1,6 +1,5 @@
 package com.timmermans.email.rate_limiting.configuration.dsl
 
-import com.timmermans.email.EmailTopic
 import com.timmermans.email.rate_limiting.RateLimiterProvider
 import com.timmermans.email.rate_limiting.configuration.RateLimitRule
 import com.timmermans.email.rate_limiting.configuration.RateLimiterProviderFromConfig
@@ -26,7 +25,7 @@ class RateLimitProviderBuilder {
      * These rules are completely independent by topic.
      * If you're looking for a codependent behavior between topics, see to `sharedLimit()`
      */
-    fun limit(vararg topics: EmailTopic, init: RulesScope.() -> Unit) {
+    fun limit(vararg topics: String, init: RulesScope.() -> Unit) {
         val rulesScope = RulesScope().apply(init)
         configs.add(RateLimitingConfig(Type.REGULAR, topics.toList(), rulesScope.rules))
     }
@@ -34,14 +33,14 @@ class RateLimitProviderBuilder {
     /**
      * These topics are not subject to rate limiting.
      */
-    fun unlimited(vararg topics: EmailTopic) {
+    fun unlimited(vararg topics: String) {
         configs.add(RateLimitingConfig(Type.UNLIMITED, topics.toList()))
     }
 
     /**
      * These topics are always blocked.
      */
-    fun prohibited(vararg topics: EmailTopic) {
+    fun prohibited(vararg topics: String) {
         configs.add(RateLimitingConfig(Type.PROHIBITED, topics.toList()))
     }
 
@@ -51,7 +50,7 @@ class RateLimitProviderBuilder {
      * Assuming topics A, B and C and rule of `1 every 1.hours`,
      * if at 00:00:00 an email is sent with topic A, no other emails can be sent with topics A, B, C until 01:00:00
      */
-    fun sharedLimit(vararg topics: EmailTopic, init: RulesScope.() -> Unit) {
+    fun sharedLimit(vararg topics: String, init: RulesScope.() -> Unit) {
         val rulesScope = RulesScope().apply(init)
         configs.add(RateLimitingConfig(Type.SHARED, topics.toList(), rulesScope.rules))
     }

@@ -1,6 +1,5 @@
 package com.timmermans.persistence
 
-import com.timmermans.email.EmailTopic
 import java.time.Instant
 import javax.persistence.*
 
@@ -14,9 +13,8 @@ data class DbOutboundEmail(
     @Column(name = "user_id", nullable = false)
     val userId: Long = 0,
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "topic", nullable = false)
-    val topic: EmailTopic = EmailTopic.UNDEFINED,
+    val topic: String = "UNDEFINED",
 
     @Column(name = "contents", nullable = false)
     val contents: String = "",
