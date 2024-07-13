@@ -13,7 +13,7 @@ actual production scenario, such as:
 - ORM (Hibernate)
 - Database connection pooling (HikariCP)
 
-The RateLimiter is configured by a 'Kotlin DSL' builder.
+The RateLimiter is configured by a 'Kotlin DSL' builder or a local JSON file.
 
 ## Rate-limiter behaviors:
 
